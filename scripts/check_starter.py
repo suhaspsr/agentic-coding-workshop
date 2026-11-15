@@ -1,8 +1,5 @@
-"""Validate checked-in workshop data; does not implement either exercise."""
+"""Validate supplied synthetic input data; does not implement the exercise."""
 import csv
-from collections import defaultdict
-from datetime import date
-from decimal import Decimal
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,36 +11,20 @@ def rows(path):
 
 
 def main():
-    sessions = rows('mle/data/sessions.csv')
+    sessions = rows('data/sessions.csv')
     assert len(sessions) == 1200
     for key in ('session_id', 'customer_id'):
-        assert len({row[key] for row in sessions}) == len(sessions)
-    assert {row['ordered_next_30m'] for row in sessions} == {'0', '1'}
-    assert any(not row['device'] for row in sessions)
-    assert any(not row['seconds_active_5m'] for row in sessions)
-    assert all(0 <= int(row['seconds_active_5m']) <= 300 for row in sessions if row['seconds_active_5m'])
-    new = rows('mle/data/new_sessions.csv')
-    assert len(new) == 12 and 'ordered_next_30m' not in new[0]
+        assert len({r[key] for r in sessions}) == len(sessions)
+    assert {r['ordered_next_30m'] for r in sessions} == {'0', '1'}
+    for key in ('device', 'seconds_active_5m', 'product_views_5m'):
+        assert any(not r[key] for r in sessions), key
+    assert all(0 <= int(r['seconds_active_5m']) <= 300 for r in sessions if r['seconds_active_5m'])
+    new = rows('data/new_sessions.csv')
+    assert len(new) == 12
+    assert set(new[0]) == set(sessions[0]) - {'ordered_next_30m'}
     assert not {r['session_id'] for r in sessions} & {r['session_id'] for r in new}
-    orders = rows('de/data/orders.csv')
-    assert len(orders) == 16
-    assert len({row['order_id'] for row in orders}) == len(orders)
-    totals = defaultdict(Decimal)
-    for row in orders:
-        date.fromisoformat(row['order_date'])
-        amount = Decimal(row['amount'])
-        assert amount.is_finite() and amount >= 0
-        assert row['store_id'].startswith('00')
-        assert row['status'] in ('completed', 'cancelled')
-        if row['status'] == 'completed':
-            totals[(row['store_id'], row['order_date'])] += amount
-    expected = rows('de/data/expected_daily_sales.csv')
-    assert len(expected) == 7
-    assert totals == {(r['store_id'], r['order_date']): Decimal(r['total_sales']) for r in expected}
-    assert sum(totals.values()) == Decimal('131.04')
-    duplicate = rows('de/data/invalid/duplicate_ids.csv')
-    assert len({r['order_id'] for r in duplicate}) < len(duplicate)
-    print('Starter checks passed: 1,200 labeled sessions, 12 new sessions, 16 orders, 7 expected totals (131.04).')
+    assert not {r['customer_id'] for r in sessions} & {r['customer_id'] for r in new}
+    print('Starter checks passed: 1,200 labeled sessions and 12 unlabeled prediction rows.')
 
 
 if __name__ == '__main__':

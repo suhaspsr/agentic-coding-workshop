@@ -1,2 +1,0 @@
-order_id,store_id,order_date,amount,status
-BAD001,00101,2026-11-01,oops,completed
