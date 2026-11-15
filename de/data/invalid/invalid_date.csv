@@ -1,0 +1,2 @@
+order_id,store_id,order_date,amount,status
+BAD002,00101,2026-02-30,10.00,completed
