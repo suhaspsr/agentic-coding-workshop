@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "workshop-mle"
+name = "agentic-coding-workshop"
 version = "0.1.0"
-description = "Agentic coding workshop MLE starter"
+description = "Shared Python environment for the MLE and DE workshop"
 authors = ["Workshop Participants"]
 readme = "README.md"
 
