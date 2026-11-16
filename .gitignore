@@ -12,3 +12,4 @@ htmlcov/
 **/artifacts/
 **/models/
 *.log
+docs/review/
