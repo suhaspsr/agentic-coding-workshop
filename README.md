@@ -1,6 +1,6 @@
 # Agentic Coding Workshop
 
-A 40-minute Python workshop for ML and data engineers using the Agentic Coding Framework in GitHub Copilot (VS Code or the Copilot app).
+A one-hour session for ML and data engineers, with a roughly 30-minute Python walkthrough using the Agentic Coding Framework in GitHub Copilot (VS Code or the Copilot app).
 
 One project, one environment, one sequence: build a customer conversion model. Data engineering tasks are part of the preparation step. Follow the copyable demo prompts, try the optional suggestions, or ask in your own words.
 
@@ -12,7 +12,7 @@ cd agentic-coding-workshop
 git switch -c workshop/my-session
 ```
 
-This repository is private. Participants need repository access before cloning. Forking may be restricted; a local branch is sufficient and there is no need to push changes.
+A local branch is sufficient and there is no need to push changes.
 
 Open `agentic-coding-workbook.html` in your browser (double-click the downloaded file). GitHub's source view does not run the interactive workbook.
 
@@ -20,7 +20,9 @@ Open the **repository root** in Copilot and run all commands there. There is one
 
 ## The project
 
-Predict whether a customer session will convert in the next 30 minutes, using activity available at minute five. Use a simple logistic regression baseline and batch predictions from CSV.
+Customers visit the website to place an order. At minute five of a still-open session with no order yet, predict whether the customer will order before the session ends. The prediction could eventually inform personalization, such as a discount; this demo does not issue one.
+
+Use synthetic session activity, signed-in status, previous visits and orders, loyalty status, and carryout or delivery selection when available by minute five. Start with a simple logistic regression baseline and batch yes/no predictions from CSV.
 
 Prepared files:
 
@@ -70,7 +72,7 @@ Install the approved `agentic-coding-framework` release from the internal market
 
 First prompt:
 
-> Use the existing root Poetry setup. Add a hello world script, run it with poetry run python, and show which interpreter you used.
+> Can you add a quick hello-world script, run it with poetry run python, and show me which Python it used?
 
 Then follow the workbook's single sequence. Ask the agent to read `data/README.md`. The datasets and Poetry configuration are prepared; participants build the preparation step, model and prediction scripts during the demo. There is no completed solution or pretrained model in this starter.
 
@@ -78,16 +80,16 @@ Then follow the workbook's single sequence. Ask the agent to read `data/README.m
 
 | Minutes | Task |
 |---|---|
-| 00–05 | Install and verify the plugin; select Orca |
-| 05–08 | Verify Poetry interpreter and hello world |
-| 08–12 | Plan the conversion model |
-| 12–20 | Prepare data; optionally try one DE prompt |
-| 20–28 | Train, evaluate and predict |
-| 28–32 | Add and run tests |
-| 32–36 | Make one requirement change |
-| 36–40 | Review and add handover instructions |
+| 00–03 | Verify the plugin and select Orca |
+| 03–05 | Verify Poetry interpreter and hello world |
+| 05–08 | Plan the conversion model and discuss skills used |
+| 08–13 | Prepare data; optionally try one DE prompt |
+| 13–19 | Train, evaluate and predict |
+| 19–22 | Add and run tests |
+| 22–25 | Make one requirement change |
+| 25–30 | Review and add handover instructions |
 
-Poetry installation and package downloads should be completed before the timer starts. Docker, CI and cloud deployment are optional extras. Required framework reviews remain part of the work throughout.
+Install the framework and complete Poetry setup and package downloads before the timer starts. The 30-minute walkthrough is a target within the one-hour session; use the remaining time for questions and buffer. Reviews may take longer: discuss questions while waiting and keep review status incomplete until it finishes. Docker, CI and cloud deployment are optional extras.
 
 ## Verify the starter data
 
