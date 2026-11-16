@@ -5,6 +5,15 @@ description = "Python environment for the customer conversion workshop"
 authors = ["Workshop Participants"]
 readme = "README.md"
 
+[[tool.poetry.source]]
+name = "ai-pyrepo"
+url = "https://artifacts.us.dominos.com/artifactory/api/pypi/ai-pyrepo/simple"
+priority = "primary"
+
+[[tool.poetry.source]]
+name = "artifactory"
+url = "https://artifacts.us.dominos.com/artifactory/api/pypi/pypi/simple"
+
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
 pandas = ">=2.2.3,<3.0"
