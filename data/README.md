@@ -1,6 +1,6 @@
 # Synthetic customer sessions
 
-All records are fictional, generated with seed 42 by `scripts/generate_starter.py`. No real customer data is used. The trigger-time values are a synthetic point-in-time assumption, not snapshots verified from event logs. The generator creates each feature as if it were known at the first cart addition; real use requires event timestamps or equivalent evidence that every feature was available by that time.
+All records are fictional, generated with seed 42. No real customer data is used. The trigger-time values are a synthetic point-in-time assumption, not snapshots verified from event logs. Each feature is defined as if it were known at the first cart addition; real use requires event timestamps or equivalent evidence that every feature was available by that time.
 
 - `sessions.csv`: 1,200 labeled rows, one unique session per unique customer. Every row is observed at that session's first cart addition.
 - `new_sessions.csv`: 12 separately generated unlabeled sessions for batch prediction with distinct IDs. Evaluate the model on held-out labeled rows, not these examples.
@@ -23,7 +23,7 @@ All records are fictional, generated with seed 42 by `scripts/generate_starter.p
 | fulfillment_method | carryout or delivery if selected by the trigger | Categorical; empty if not yet selected |
 | converted | Order after the first cart addition and before session end: 0 or 1 | Target; absent from new_sessions.csv |
 
-Every row is conditioned on a first cart addition; sessions without one are outside this prediction task. Counts describe activity before the trigger, and no post-trigger activity or elapsed time is included. `returning_customer` is recognition by the session, while `previous_visits` is signed-in history; a customer with prior visits may not be recognized as returning. Empty cells mean unknown or not yet selected, not automatically zero or no. The customer ID is fictional bookkeeping, not a login credential; exclude both IDs and the target from features. Use the supplied data rather than regenerating it during the demo. The generator is provided only for intentional dataset regeneration.
+Every row is conditioned on a first cart addition; sessions without one are outside this prediction task. Counts describe activity before the trigger, and no post-trigger activity or elapsed time is included. `returning_customer` is recognition by the session, while `previous_visits` is signed-in history; a customer with prior visits may not be recognized as returning. Empty cells mean unknown or not yet selected, not automatically zero or no. The customer ID is fictional bookkeeping, not a login credential; exclude both IDs and the target from features. Use the supplied data rather than regenerating it during the demo.
 Split before fitting preprocessing and save the preprocessing with the model.
 A stratified split is suitable for this synthetic one-session-per-customer exercise.
 Real repeated-customer data needs an appropriate group split, a consistent definition of session end and completed sessions for labels.
