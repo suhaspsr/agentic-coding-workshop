@@ -20,15 +20,15 @@ Open the **repository root** in Copilot and run all commands there. There is one
 
 ## The project
 
-Customers visit the website to place an order. At minute five of a still-open session with no order yet, predict whether the customer will order before the session ends. The prediction could eventually inform personalization, such as a discount; this demo does not issue one.
+Customers visit the website to place an order. When a customer adds their first item to the cart, predict whether they will place an order before the session ends. The prediction could eventually inform personalization, such as a discount; this demo does not issue one.
 
-Use synthetic session activity, signed-in status, previous visits and orders, loyalty status, and carryout or delivery selection when available by minute five. Start with a simple logistic regression baseline and batch yes/no predictions from CSV.
+Use synthetic activity and customer information available at the first cart addition, including browsing activity before the trigger, device, returning-customer recognition, sign-in status, previous visits and orders, loyalty status, and carryout or delivery selection if already chosen. The trigger can happen at any point in the session; there is no elapsed-time cutoff. Start with a simple logistic regression baseline and batch yes/no predictions from CSV.
 
 Prepared files:
 
 - `data/sessions.csv`: 1,200 labeled synthetic sessions, including missing feature values.
 - `data/new_sessions.csv`: 12 unlabeled sessions for predictions.
-- `data/README.md`: schema, prediction boundary and target definition.
+- `data/README.md`: schema, first-cart prediction boundary and target definition.
 
 The main sequence is setup → hello world → plan → prepare data → train and predict → test → change → review and hand over.
 During data preparation, optional DE prompts cover schema validation, data quality reports and repeatable ETL. They use the same dataset and feed the same model. Choose one if time permits; no separate DE project is needed.
@@ -142,6 +142,6 @@ poetry run python scripts/check_starter.py
 python scripts/check_starter.py
 ```
 
-This checks the supplied labeled and prediction data. It does not test the preparation code or model participants have yet to build. Add behavioral tests with Orca during the workshop.
+This standard-library check validates the supplied labeled and prediction data. It does not test the preparation code or model participants have yet to build. Add behavioral tests with Orca during the workshop.
 
 All data is synthetic. Model metrics demonstrate mechanics, not production business value. No cloud account, database, Docker, API key or live customer data is needed.

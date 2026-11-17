@@ -11,5 +11,6 @@ htmlcov/
 **/outputs/
 **/artifacts/
 **/models/
+/docs/
 *.log
 docs/review/
