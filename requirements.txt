@@ -1,0 +1,23 @@
+# Generated from poetry.lock for Python 3.10-3.12; pip does not enforce this range.
+# Keep the pinned versions and Python markers in sync with the lock.
+# Requires access to the organization's approved Artifactory package index.
+--index-url https://artifacts.us.dominos.com/artifactory/api/pypi/pypi/simple
+
+cloudpickle==3.1.2
+joblib==1.6.0
+narwhals==2.28.0 ; python_version >= "3.11"
+numpy==2.2.6 ; python_version == "3.10"
+numpy==2.4.6 ; python_version == "3.11"
+numpy==2.5.5 ; python_version == "3.12"
+pandas==2.3.3
+python-dateutil==3.0.0 ; python_version == "3.10"
+python-dateutil==4.0.0 ; python_version >= "3.11"
+pytz==2026.6
+scikit-learn==1.7.2 ; python_version == "3.10"
+scikit-learn==1.9.1 ; python_version >= "3.11"
+scipy==1.15.3 ; python_version == "3.10"
+scipy==1.17.1 ; python_version == "3.11"
+scipy==1.18.1 ; python_version == "3.12"
+six==1.17.0 ; python_version == "3.10"
+threadpoolctl==3.8.0
+tzdata==2026.6

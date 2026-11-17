@@ -13,3 +13,4 @@ htmlcov/
 **/models/
 /docs/
 *.log
+docs/review/
